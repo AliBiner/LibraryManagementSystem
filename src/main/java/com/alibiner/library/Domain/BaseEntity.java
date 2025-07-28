@@ -2,10 +2,11 @@ package com.alibiner.library.Domain;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class BaseEntity {
-
-    private UUID id;
+    private static AtomicLong incrementId = new AtomicLong(0);
+    private long id;
     private boolean status;
     private LocalDateTime createdDate = null;
     private LocalDateTime updatedDate = null;
@@ -13,18 +14,18 @@ public class BaseEntity {
     private boolean isDeleted;
 
     public BaseEntity() {
-        setId(UUID.randomUUID());
+        setId();
         setStatus(true);
         setDeleted(false);
         setCreatedDate(LocalDateTime.now());
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    private void setId(UUID id) {
-        this.id = id;
+    private void setId() {
+        this.id = incrementId.incrementAndGet();
     }
 
     public boolean isStatus() {
