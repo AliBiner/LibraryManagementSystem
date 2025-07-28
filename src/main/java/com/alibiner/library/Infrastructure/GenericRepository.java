@@ -10,7 +10,11 @@ public class GenericRepository<TEntity extends BaseEntity> implements IGenericRe
 
     @Override
     public boolean add(TEntity entity){
-        boolean isTrue = list.add(entity);
-        return isTrue;
-    };
+        return list.add(entity);
+    }
+
+    @Override
+    public List<TEntity> getAll() {
+        return list;
+    }
 }
