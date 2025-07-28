@@ -1,0 +1,8 @@
+package com.alibiner.library.Infrastructure;
+
+import com.alibiner.library.Domain.Book;
+
+import java.util.List;
+
+public class BookRepository extends GenericRepository<Book> {
+}
