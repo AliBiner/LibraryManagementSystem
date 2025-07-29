@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class GenericRepository<TEntity extends BaseEntity> implements IGenericRepository<TEntity>{
-    private final List<TEntity> list = new ArrayList<>();
+    protected final List<TEntity> list = new ArrayList<>();
 
     @Override
     public boolean add(TEntity entity){
@@ -28,6 +28,7 @@ public class GenericRepository<TEntity extends BaseEntity> implements IGenericRe
 
     @Override
     public TEntity getByObject(TEntity entity) {
-        return list.stream().filter(element -> element.equals(entity)).findFirst().get();
+        return list.stream().filter(element -> element.equals(entity)).findFirst().orElse(null);
     }
+
 }

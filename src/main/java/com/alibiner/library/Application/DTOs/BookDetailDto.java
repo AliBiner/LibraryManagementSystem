@@ -1,8 +1,6 @@
 package com.alibiner.library.Application.DTOs;
 
-import java.util.UUID;
-
-public class GetAllBookDto extends BaseDto{
+public class BookDetailDto extends BaseDto{
     private long id;
     private String title;
     private String author;

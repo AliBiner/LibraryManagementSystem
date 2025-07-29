@@ -1,0 +1,7 @@
+package com.alibiner.library.Application.Services;
+
+import com.alibiner.library.Application.DTOs.BookDetailDto;
+
+public interface IBookService {
+    BookDetailDto getByTitle(String title);
+}
