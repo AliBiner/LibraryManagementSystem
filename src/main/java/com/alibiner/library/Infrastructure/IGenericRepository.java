@@ -7,4 +7,5 @@ import java.util.List;
 public interface IGenericRepository<TEntity extends BaseEntity> {
     boolean add(TEntity entity);
     List<TEntity> getAll();
+    boolean isExist(TEntity entity);
 }

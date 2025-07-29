@@ -17,7 +17,6 @@ public class BookController {
 
     public boolean add(){
         InsertBookDto dto = new InsertBookDto();
-        bookService.setMapper(new InsertBookDtoTo());
         return bookService.add(dto);
     }
 

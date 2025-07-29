@@ -1,6 +1,7 @@
 package com.alibiner.library.Domain;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -14,7 +15,6 @@ public class BaseEntity {
     private boolean isDeleted;
 
     public BaseEntity() {
-        setId();
         setStatus(true);
         setDeleted(false);
         setCreatedDate(LocalDateTime.now());
@@ -24,7 +24,7 @@ public class BaseEntity {
         return id;
     }
 
-    private void setId() {
+    public void setId() {
         this.id = incrementId.incrementAndGet();
     }
 
@@ -78,4 +78,5 @@ public class BaseEntity {
                 ", deletedDate=" + deletedDate +
                 ", isDeleted=" + isDeleted;
     }
+
 }
