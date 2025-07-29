@@ -6,6 +6,16 @@ import java.util.Scanner;
 public class CustomScanner {
     Scanner scanner = new Scanner(System.in);
 
+    public CustomScanner() {
+    }
+
+    public CustomScanner(String welcomeText) {
+        System.out.println(welcomeText);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+    }
+
     // This method asks user to enter an integer value using a String label
     public int getAbsoluteRange(String text,int minRange, int maxRange) {
         if (minRange<0)
@@ -17,7 +27,7 @@ public class CustomScanner {
         int input = -1;
         while (input == -1) {
             try {
-                System.out.println(text);
+                System.out.print(text);
                 int tmp = scanner.nextInt(); // read integer from user
                 if (tmp < minRange || tmp > maxRange) {
                     System.out.println("Hatalı Giriş! Lütfen " + minRange + "(dahil) - " + maxRange + "(dahil) arasında bir değer giriniz.");
@@ -52,7 +62,7 @@ public class CustomScanner {
         int input = -1;
         while (input == -1){
             try {
-                System.out.println(text);
+                System.out.print(text);
                 int tmp = scanner.nextInt(); // read integer from user
                 if (tmp<minRange){
                     System.out.println("Hatalı Giriş! Lütfen " + minRange + "'den büyük bir değer giriniz.");
@@ -82,7 +92,7 @@ public class CustomScanner {
     public String getSentencesRange(String text,int minRange) {
         int inputLength = 0;
         while (inputLength<minRange){
-                System.out.println(text);
+                System.out.print(text);
                 String tmp = scanner.nextLine(); // read integer from user
                 if (tmp.length()<minRange){
                     System.out.println("Hatalı Giriş! En az " + minRange + " karakter olmalı!" );
@@ -97,7 +107,7 @@ public class CustomScanner {
     public String getWordRange(String text,int minRange, int maxRange) {
         int inputLength = -1;
         while (inputLength<minRange){
-            System.out.println(text);
+            System.out.print(text);
             String tmp = scanner.next(); // read integer from user
             if (tmp.length()<minRange || tmp.length()>maxRange){
                 System.out.println("Hatalı Giriş! En az " + minRange + " karakter, en fazla " + maxRange+ " karakter olmalı!" );

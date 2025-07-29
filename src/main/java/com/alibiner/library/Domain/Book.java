@@ -2,13 +2,17 @@ package com.alibiner.library.Domain;
 
 import com.alibiner.library.Service.CustomScanner;
 
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Book extends BaseEntity {
     private CustomScanner scanner;
-
+    private final AtomicInteger autoIncrementStock = new AtomicInteger(0);
     private String title;
     private String author;
     private String ISBN;
     private int page;
+    private int stock;
 
     public Book(String title,String author,String ISBN) {
         scanner = new CustomScanner();
@@ -58,6 +62,14 @@ public class Book extends BaseEntity {
         this.page = page;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock() {
+        this.stock = autoIncrementStock.incrementAndGet();
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -68,4 +80,11 @@ public class Book extends BaseEntity {
                 ", page= " + page +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        Book book = (Book) o;
+        return page == book.page && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(ISBN, book.ISBN);
+    }
+
 }
