@@ -8,4 +8,5 @@ public interface IGenericRepository<TEntity extends BaseEntity> {
     boolean add(TEntity entity);
     List<TEntity> getAll();
     boolean isExist(TEntity entity);
+    TEntity getByObject (TEntity entity);
 }
