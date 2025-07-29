@@ -34,6 +34,7 @@ public class CustomScanner {
                     scanner.nextLine(); // clear the invalid input
                 }
                 else {
+                    scanner.nextLine(); // clear the invalid input
                     return tmp;
                 }
             } catch (InputMismatchException e) {
@@ -97,8 +98,10 @@ public class CustomScanner {
                 if (tmp.length()<minRange){
                     System.out.println("Hatalı Giriş! En az " + minRange + " karakter olmalı!" );
                 }
-                else
+                else{
+                    scanner.reset();
                     return tmp;
+                }
         }
         return null;
     }
