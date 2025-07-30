@@ -24,9 +24,8 @@ public class BookDetailDtoMapper implements IBaseMapper<Book, BookDetailDto> {
         BookDetailDto dto = new BookDetailDto();
         dto.setId(source.getId());
         dto.setISBN(source.getISBN());
-        dto.setPage(source.getPage());
         dto.setAuthor(source.getAuthor());
-        dto.setStatus(source.isStatus());
+        dto.setCheckOutStatus(source.isCheckOut());
         dto.setTitle(source.getTitle());
         return dto;
     }
@@ -38,9 +37,8 @@ public class BookDetailDtoMapper implements IBaseMapper<Book, BookDetailDto> {
             BookDetailDto dto = new BookDetailDto();
             dto.setId(book.getId());
             dto.setISBN(book.getISBN());
-            dto.setPage(book.getPage());
             dto.setAuthor(book.getAuthor());
-            dto.setStatus(book.isStatus());
+            dto.setCheckOutStatus(book.isCheckOut());
             dto.setTitle(book.getTitle());
             dtoList.add(dto);
         }

@@ -17,12 +17,12 @@ public class App {
                 "1. Add A New Book\n" +
                 "2. Display All Books\n" +
                 "3. Search For A Book By Title\n" +
+                "4. Check out a book \n" +
                 "6. Exit\n" +
                 "Your Choice: ";
 
         boolean exit = false;
         do {
-
             int choice = scanner.getAbsoluteRange(choiceText,1,6);
             System.out.println();
             switch (choice){
@@ -47,6 +47,13 @@ public class App {
                         System.out.println("No Matching Data!");
                     else
                         System.out.println(result);
+                    break;
+                case 4:
+                    int id = scanner.getAbsoluteRange("Enter Book Id: ",1);
+                    if (!bookController.checkOut(id))
+                        System.out.println("This book is not available");
+                    else
+                        System.out.println("The Book has been reserved for you");
                     break;
                 case 6:
                     exit = true;

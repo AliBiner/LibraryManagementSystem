@@ -13,12 +13,14 @@ public class Book extends BaseEntity {
     private String ISBN;
     private int page;
     private int stock;
+    private boolean checkOut;
 
     public Book(String title,String author,String ISBN) {
         scanner = new CustomScanner();
         setTitle(title);
         setAuthor(author);
         setISBN(ISBN);
+        checkoutEnabled();
     }
 
     public String getTitle() {
@@ -70,6 +72,18 @@ public class Book extends BaseEntity {
         this.stock = autoIncrementStock.incrementAndGet();
     }
 
+    public boolean isCheckOut() {
+        return checkOut;
+    }
+
+    public void checkoutEnabled() {
+        this.checkOut = true;
+    }
+
+    public void checkoutDisabled(){
+        this.checkOut = false;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -86,5 +100,4 @@ public class Book extends BaseEntity {
         Book book = (Book) o;
         return page == book.page && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(ISBN, book.ISBN);
     }
-
 }

@@ -42,4 +42,16 @@ public class BookService extends GenericService implements IBookService {
             return null;
         return new BookDetailDtoMapper().mapToDto(book);
     }
+
+    @Override
+    public boolean checkOut(long id) {
+        Book book = bookRepository.getById(id);
+        if (book == null)
+            return false;
+        else if (!book.isCheckOut()) {
+            return false;
+        }
+        book.checkoutDisabled();
+        return bookRepository.update(book);
+    }
 }

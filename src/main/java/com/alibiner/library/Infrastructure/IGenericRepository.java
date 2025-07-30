@@ -9,4 +9,6 @@ public interface IGenericRepository<TEntity extends BaseEntity> {
     List<TEntity> getAll();
     boolean isExist(TEntity entity);
     TEntity getByObject (TEntity entity);
+    boolean update(TEntity entity);
+    TEntity getById(long id);
 }
