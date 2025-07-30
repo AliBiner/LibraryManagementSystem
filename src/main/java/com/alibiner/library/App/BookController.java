@@ -28,4 +28,8 @@ public class BookController {
     public BookDetailDto getByTitle(String title) {
         return bookService.getByTitle(title);
     }
+
+    public boolean checkOut(long id){
+        return bookService.checkOut(id);
+    }
 }

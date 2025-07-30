@@ -5,8 +5,8 @@ public class BookDetailDto extends BaseDto{
     private String title;
     private String author;
     private String ISBN;
-    private int page;
     private boolean status;
+    private String checkOutStatus;
 
     public long getId() {
         return this.id;
@@ -40,20 +40,23 @@ public class BookDetailDto extends BaseDto{
         this.ISBN = ISBN;
     }
 
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
     public boolean isStatus() {
         return status;
     }
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getCheckOutStatus() {
+        return checkOutStatus;
+    }
+
+    public void setCheckOutStatus(boolean checkOutStatus) {
+        if (checkOutStatus)
+            this.checkOutStatus = "Available";
+        else
+            this.checkOutStatus = "Not Available";
     }
 
     @Override
@@ -65,8 +68,8 @@ public class BookDetailDto extends BaseDto{
                         "Title: ".length() + title.length()),
                 Math.max("Author: ".length() + author.length(), "ISBN : ".length() + ISBN.length())
         );
-        maxContentLength = Math.max(maxContentLength, "Page : ".length() + String.valueOf(page).length());
         maxContentLength = Math.max(maxContentLength, "Status: ".length() + String.valueOf(status).length());
+        maxContentLength = Math.max(maxContentLength,checkOutStatus.length());
 
         // Desenin genişliği için güvenli bir boşluk payı bırakalım (minimum 30 diyelim)
         int desiredWidth = Math.max(maxContentLength + 4, 30); // 4 boşluk (sağdan 2, soldan 2)
@@ -92,8 +95,7 @@ public class BookDetailDto extends BaseDto{
         sb.append(formatLine("Title : " + title, desiredWidth));
         sb.append(formatLine("Author: " + author, desiredWidth));
         sb.append(formatLine("ISBN : " + ISBN, desiredWidth));
-        sb.append(formatLine("Page : " + page, desiredWidth));
-        sb.append(formatLine("Status: " + status, desiredWidth));
+        sb.append(formatLine("Status: " + checkOutStatus, desiredWidth));
 
         // Boş satır (içeriğin altı)
         sb.append("█ ");

@@ -31,4 +31,20 @@ public class GenericRepository<TEntity extends BaseEntity> implements IGenericRe
         return list.stream().filter(element -> element.equals(entity)).findFirst().orElse(null);
     }
 
+    @Override
+    public boolean update(TEntity entity) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals(entity)){
+                list.set(i,entity);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public TEntity getById(long id) {
+        return list.stream().filter(element -> element.getId()==id).findFirst().orElse(null);
+    }
+
 }
