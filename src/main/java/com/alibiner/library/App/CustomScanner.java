@@ -1,4 +1,4 @@
-package com.alibiner.library.Service;
+package com.alibiner.library.App;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
