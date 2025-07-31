@@ -4,7 +4,6 @@ import com.alibiner.library.Application.DTOs.BookDetailDto;
 import com.alibiner.library.Application.DTOs.InsertBookDto;
 import com.alibiner.library.Application.Mappers.BookMappers.BookDetailDtoMapper;
 import com.alibiner.library.Application.Services.BookService;
-import com.alibiner.library.Service.CustomScanner;
 
 import java.util.List;
 
@@ -32,4 +31,6 @@ public class BookController {
     public boolean checkOut(long id){
         return bookService.checkOut(id);
     }
+
+    public boolean returnBook(long id){ return bookService.returnBook(id); }
 }

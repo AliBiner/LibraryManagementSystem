@@ -1,6 +1,6 @@
 package com.alibiner.library.Domain;
 
-import com.alibiner.library.Service.CustomScanner;
+import com.alibiner.library.App.CustomScanner;
 
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
