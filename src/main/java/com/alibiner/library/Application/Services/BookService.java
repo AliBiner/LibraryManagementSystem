@@ -46,12 +46,20 @@ public class BookService extends GenericService implements IBookService {
     @Override
     public boolean checkOut(long id) {
         Book book = bookRepository.getById(id);
-        if (book == null)
+        if (book == null || !book.isCheckOut())
             return false;
-        else if (!book.isCheckOut()) {
-            return false;
-        }
         book.checkoutDisabled();
         return bookRepository.update(book);
     }
+
+    @Override
+    public boolean returnBook(long id) {
+        Book book = bookRepository.getById(id);
+        if (book == null || book.isCheckOut())
+            return false;
+        book.checkoutEnabled();
+        return bookRepository.update(book);
+    }
+
+
 }

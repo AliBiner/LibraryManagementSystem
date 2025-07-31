@@ -3,7 +3,6 @@ package com.alibiner.library.App;
 import com.alibiner.library.Application.DTOs.BookDetailDto;
 import com.alibiner.library.Application.Services.BookService;
 import com.alibiner.library.Infrastructure.BookRepository;
-import com.alibiner.library.Service.CustomScanner;
 
 import java.util.List;
 
@@ -18,6 +17,7 @@ public class App {
                 "2. Display All Books\n" +
                 "3. Search For A Book By Title\n" +
                 "4. Check out a book \n" +
+                "5. Return a book \n" +
                 "6. Exit\n" +
                 "Your Choice: ";
 
@@ -49,11 +49,18 @@ public class App {
                         System.out.println(result);
                     break;
                 case 4:
-                    int id = scanner.getAbsoluteRange("Enter Book Id: ",1);
-                    if (!bookController.checkOut(id))
-                        System.out.println("This book is not available");
+                    long checkOutId = scanner.getAbsoluteRange("Enter book id to check out: ",1);
+                    if (!bookController.checkOut(checkOutId))
+                        System.out.println("This book already reserved for other");
                     else
-                        System.out.println("The Book has been reserved for you");
+                        System.out.println("The book has been reserved for you");
+                    break;
+                case 5:
+                    long returnBookId = scanner.getAbsoluteRange("Enter book id to return: ", 1);
+                    if (!bookController.returnBook(returnBookId))
+                        System.out.println("This book has not yet been reserved");
+                    else
+                        System.out.println("The book received");
                     break;
                 case 6:
                     exit = true;

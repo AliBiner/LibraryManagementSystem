@@ -1,6 +1,6 @@
 package com.alibiner.library.Application.DTOs;
 
-import com.alibiner.library.Service.CustomScanner;
+import com.alibiner.library.App.CustomScanner;
 
 public class InsertBookDto extends BaseDto{
     private final CustomScanner scanner = new CustomScanner();
