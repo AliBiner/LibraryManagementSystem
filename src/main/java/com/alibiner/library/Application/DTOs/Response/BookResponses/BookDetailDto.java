@@ -1,11 +1,30 @@
-package com.alibiner.library.Application.DTOs;
+package com.alibiner.library.Application.DTOs.Response.BookResponses;
 
-public class BookDetailDto extends BaseDto{
+import com.alibiner.library.Application.DTOs.BaseDto;
+
+/**
+ * BookDetailDto is a Data Transfer Object (DTO) that holds book details.
+ * <p>
+ * It is used to show the book's information such as title, author, ISBN,
+ * and status (whether it is available or not).
+ */
+public class BookDetailDto implements BaseDto {
+    /** Unique ID for the book */
     private long id;
+
+    /** Title of the book */
     private String title;
+
+    /** Author of the book */
     private String author;
+
+    /** ISBN number of the book */
     private String ISBN;
+
+    /** True if the book is available, false if it is reserved */
     private boolean status;
+
+    /** A readable status: "Available" or "Not Available" */
     private String checkOutStatus;
 
     public long getId() {
@@ -52,6 +71,11 @@ public class BookDetailDto extends BaseDto{
         return checkOutStatus;
     }
 
+    /**
+     * Sets the check-out status based on a boolean.
+     * If true, sets it as "Available", else "Not Available".
+     * @param checkOutStatus true if book is free, false if reserved
+     */
     public void setCheckOutStatus(boolean checkOutStatus) {
         if (checkOutStatus)
             this.checkOutStatus = "Available";
@@ -59,10 +83,15 @@ public class BookDetailDto extends BaseDto{
             this.checkOutStatus = "Not Available";
     }
 
+    /**
+     * Returns the book's information as a styled box of text.
+     * Helpful for printing book details in the console.
+     *
+     * @return a formatted string with all book details
+     */
     @Override
     public String toString() {
-        // Desenin genişliğini ve yüksekliğini belirleyelim
-        // Her bir satır için maksimum uzunluğu hesaplayalım
+        // calculates max width and formats output nicely
         int maxContentLength = Math.max(
                 Math.max("Id: ".length() + String.valueOf(id).length(),
                         "Title: ".length() + title.length()),
@@ -71,61 +100,66 @@ public class BookDetailDto extends BaseDto{
         maxContentLength = Math.max(maxContentLength, "Status: ".length() + String.valueOf(status).length());
         maxContentLength = Math.max(maxContentLength,checkOutStatus.length());
 
-        // Desenin genişliği için güvenli bir boşluk payı bırakalım (minimum 30 diyelim)
-        int desiredWidth = Math.max(maxContentLength + 4, 30); // 4 boşluk (sağdan 2, soldan 2)
+
+        int desiredWidth = Math.max(maxContentLength + 4, 30);
 
         StringBuilder sb = new StringBuilder();
 
-        // Üst kenar
-        sb.append("█ "); // Sol üst köşe
-        for (int i = 0; i < desiredWidth - 4; i++) { // Ortadaki kareler
+
+        sb.append("█ ");
+        for (int i = 0; i < desiredWidth - 4; i++) {
             sb.append("█");
         }
-        sb.append(" █\n"); // Sağ üst köşe
+        sb.append(" █\n");
 
-        // Boş satır (üst kenarın altı)
+
         sb.append("█ ");
         for (int i = 0; i < desiredWidth - 4; i++) {
             sb.append(" ");
         }
         sb.append(" █\n");
 
-        // İçerik satırları
+
         sb.append(formatLine("Id: " + id, desiredWidth));
         sb.append(formatLine("Title : " + title, desiredWidth));
         sb.append(formatLine("Author: " + author, desiredWidth));
         sb.append(formatLine("ISBN : " + ISBN, desiredWidth));
         sb.append(formatLine("Status: " + checkOutStatus, desiredWidth));
 
-        // Boş satır (içeriğin altı)
+
         sb.append("█ ");
         for (int i = 0; i < desiredWidth - 4; i++) {
             sb.append(" ");
         }
         sb.append(" █\n");
 
-        // Alt kenar
-        sb.append("█ "); // Sol alt köşe
-        for (int i = 0; i < desiredWidth - 4; i++) { // Ortadaki kareler
+
+        sb.append("█ ");
+        for (int i = 0; i < desiredWidth - 4; i++) {
             sb.append("█");
         }
-        sb.append(" █"); // Sağ alt köşe
+        sb.append(" █");
 
 
         return sb.toString();
     }
 
-    // Her bir içerik satırını formatlayan yardımcı metod
+    /**
+     * Helper method to format one line of the box.
+     *
+     * @param content the text to show
+     * @param desiredWidth total width of the box
+     * @return a formatted line string
+     */
     private String formatLine(String content, int desiredWidth) {
         StringBuilder line = new StringBuilder();
-        line.append("█ "); // Sol kenar karesi ve boşluk
+        line.append("█ ");
 
-        // İçeriği yerleştir ve kalan boşlukları doldur
         line.append(content);
         for (int i = content.length(); i < desiredWidth - 4; i++) {
             line.append(" ");
         }
-        line.append(" █\n"); // Sağ boşluk ve kenar karesi
+        line.append(" █\n");
         return line.toString();
     }
 }

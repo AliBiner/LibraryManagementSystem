@@ -1,17 +1,19 @@
-package com.alibiner.library.Infrastructure;
+package com.alibiner.library.Infrastructure.Repositories;
 
 import com.alibiner.library.Domain.BaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class GenericRepository<TEntity extends BaseEntity> implements IGenericRepository<TEntity>{
-    protected final List<TEntity> list = new ArrayList<>();
+public abstract class GenericRepository<TEntity extends BaseEntity> implements com.alibiner.library.Infrastructure.Interfaces.GenericRepository<TEntity> {
+    protected final List<TEntity> list;
+
+    public GenericRepository(List<TEntity> datalist) {
+        this.list = datalist;
+    }
 
     @Override
     public boolean add(TEntity entity){
-        entity.setId();
         return list.add(entity);
     }
 
@@ -24,11 +26,6 @@ public class GenericRepository<TEntity extends BaseEntity> implements IGenericRe
     public boolean isExist(TEntity entity) {
         boolean result = list.stream().anyMatch(element -> element.equals(entity));
         return result;
-    }
-
-    @Override
-    public TEntity getByObject(TEntity entity) {
-        return list.stream().filter(element -> element.equals(entity)).findFirst().orElse(null);
     }
 
     @Override
