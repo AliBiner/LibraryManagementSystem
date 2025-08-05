@@ -157,8 +157,7 @@ public class CustomScanner {
                     System.out.println("Invalid input! Must be at least " + minRange + " and no more than " + maxRange +
                         " characters." );
                 else
-                    System.out.println("Invalid input! Must be at least " + minRange + " and no more than " + maxRange +
-                            " characters." );
+                    System.out.println("Invalid input! Must be "+ minRange + " characters." );
                 scanner.nextLine(); // Clear buffer
             }
             else
